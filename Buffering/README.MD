@@ -130,7 +130,7 @@ In our case, the consumer is consuming 3 results per a second, while the produce
 *A fix for this would be discussed later*
 
 Okay, so anyway, what would happen if let the producer produce 3 results per second while having the size of the buffer as 20?
-[details ="click me for test code"]
+
 ```lua
 local buff = {}
 local consumed = {}
@@ -175,7 +175,6 @@ task.spawn(function()
 	print("total", #buff, "left", #buff - #consumed, "consumed", #consumed)
 end)
 ```
-[/details]
 
 Well, it would eventually error "Buffer overflow", but what's that? Well, it is Buffer ***over***flowing
 

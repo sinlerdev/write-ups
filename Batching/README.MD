@@ -7,7 +7,7 @@ Batching is a technique that can be found everywhere, whether it is networking, 
 
 Just for the sake of simplicity, we will stick to roblox networking tools which are remotes.
 
-[details ="Now, take this pseudocode for example:"]
+
 ```
 remote = get remote
 signal = get signal
@@ -20,7 +20,6 @@ for 10 loops do
    fire signal with current_loop_number^2
 end
 ```
-[/details]
 
 This is ***extremely*** inefficient, and while optimizing this is pretty much a common "optimization tip" on roblox, it is important to know the reason which to cut the long story short, remotes have 9+ bytes overheard which we are firing the remote 10 times, therefore we have 90+ bytes overheard, which adds up to 180 bytes if we calculated the space used by the 10 numbers *(each number is 9 bytes, so 9 * 10 + 90 is 180)*  . 
 
