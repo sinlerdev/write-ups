@@ -45,7 +45,7 @@ end)
 
 ```
 
-In this example, the producer is 2x times faster than the consumer, which means that in theory, half of the data or event more that will be ever produced will not be received by the consumer.
+In this example, the producer is 2x times faster than the consumer, which means that in theory, half of the data or even more that will be ever produced will not be received by the consumer.
 
  A buffer would solve this, which we can see the observation by doing:
 
@@ -88,11 +88,11 @@ end)
 
 This may look scary; however, you don't really need to know what's going on as you only need to be aware of the following:
 
-1. The producer has a cap of 10 seconds, while the consumer has 20 - this is just to give a fair ratio since the producer produces 2 results per second, while the consumer consumes 1 result per second. Although in the real word, both the consumer and the producer doesn't have a time cap in normal circumstances.
+1. The producer has a cap of 10 seconds, while the consumer has 20 - this is just to give a fair ratio since the producer produces 2 results per second, while the consumer consumes 1 result per second. Although in the real word, both the consumer and the producer don't have a time cap in normal circumstances.
 
 2. Data is not lost and saved in order
 
-However, what will happen if we let the consumer to read three results per a second, while having a time cap of 10 seconds?
+However, what will happen if we let the consumer read three results per a second, while having a time cap of 10 seconds?
 
 If we tried replacing the consumer code with this:
 ```lua
@@ -129,8 +129,8 @@ In our case, the consumer is consuming 3 results per a second, while the produce
 
 *A fix for this would be discussed later*
 
-Okay, so anyway, what would happen if let the producer produce 3 results per second while having the size of the buffer as 20?
-
+Okay, so anyway, what would happen if we let the producer produce 3 results per second while having the size of the buffer as 20?
+[details ="click me for test code"]
 ```lua
 local buff = {}
 local consumed = {}
@@ -175,6 +175,7 @@ task.spawn(function()
 	print("total", #buff, "left", #buff - #consumed, "consumed", #consumed)
 end)
 ```
+[/details]
 
 Well, it would eventually error "Buffer overflow", but what's that? Well, it is Buffer ***over***flowing
 
